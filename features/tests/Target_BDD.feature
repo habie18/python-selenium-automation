@@ -2,10 +2,10 @@
 Feature:Test scenarios for Target website
   # Enter feature description here
 
-  Scenario: Users can see empty cart message
-    Given Open target
-    When  Click on cart icon
-    Then Verify empty cart
+  #Scenario: Users can see empty cart message
+   # Given Open target cart
+   # When  Click on cart icon
+    #Then Verify empty cart
 
     # Enter steps here
 

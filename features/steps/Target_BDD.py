@@ -1,16 +1,13 @@
-from selenium.webdriver.common import by
 from selenium.webdriver.common.by import By
-from behave import given, when, then
-from time import sleep
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from behave import when, then, given
 
 @given('Open target cart')
 def open_main_page(context):
     context.driver.get("https://www.target.com/cart")
 
-#@when('click on cart icon')
-#def click_cart_icon(context):
-#    context.driver.find_element(By.CSS_SELECTOR, '[data-test="@web/CartIcon"]').click()
-#    sleep(5)
+
 
 @then('verify empty cart')
 def verify_empty_cart(context):
@@ -20,18 +17,19 @@ def verify_empty_cart(context):
 
 @when('Click on Sign in')
 def click_sign_in(context):
-    context.driver.find_element(By.CSS_SELECTOR, '[data-test="@web/AccountLink"]').click()
-    sleep(2)
-
+    WebDriverWait(context.driver, 10).until(
+        EC.element_to_be_clickable((By.CSS_SELECTOR, '[data-test="@web/AccountLink"]'))
+    ).click()
 
 @when('Click Sign in on side menu')
 def click_side_menu_sign_in(context):
-    context.driver.find_element(By.CSS_SELECTOR, '[data-test="accountNav-signIn"]').click()
-    sleep(2)
-
+    WebDriverWait(context.driver, 10).until(
+        EC.element_to_be_clickable((By.CSS_SELECTOR, '[data-test="accountNav-signIn"]'))
+    ).click()
 
 @then('Verify Sign in form opens')
 def verify_sign_in_form(context):
-    context.driver.find_element(By.CSS_SELECTOR, '#login')
-    sleep(4)
+    WebDriverWait(context.driver, 10).until(
+        EC.visibility_of_element_located((By.CSS_SELECTOR, '#login'))
+    )
 
