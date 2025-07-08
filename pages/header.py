@@ -5,20 +5,25 @@ from time import sleep
 from pages.base_page import Page
 
 class Header(Page):
+    CART_BTN = (By.CSS_SELECTOR, "[data-test='@web/CartLink']")
     SEARCH_FIELD = (By.ID, 'search')
     SEARCH_BTN = (By.XPATH, "//button[@data-test='@web/Search/SearchButton']")
-  #  CART_ICON = (By.CSS_SELECTOR, "[data-test='@web/CartLink']")
+    SIGN_IN = (By.XPATH, "//a[@data-test='@web/AccountLink']")
+    NAV_SIGN_IN = (By.XPATH, "//a[@data-test='accountNav-signIn']")
 
-    def search_product(self):
-        self.input_text('tea', *self.SEARCH_FIELD)
+    def search_product(self, search_word):
+        self.input_text(search_word, *self.SEARCH_FIELD)
         self.click(*self.SEARCH_BTN)
-        sleep(10)
+        sleep(10)  # wait for search results page to load
 
+    def click_cart(self):
+        self.click(*self.CART_BTN)
 
-   # def search_product(self, search_word):
-       # self.input_text(search_word, *self.SEARCH_FIELD)
-      #  self.click(*self.SEARCH_BTN)
-      #  sleep(10)
+    # self.driver.find_element(*self.CART_BTN).click()
+    # self.driver.find_element(*self.CART_BTN).click()
 
-   # def click_cart(self):
-     #   self.click(*self.CART_ICON)
+    def click_sign_in(self):
+        self.click(*self.SIGN_IN)
+
+    def click_right_side_nav_sign_in(self):
+        self.click(*self.NAV_SIGN_IN)

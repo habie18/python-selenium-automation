@@ -1,10 +1,10 @@
 # Created by habeeb at 7/5/2025
 Feature: Tests for Target Search and Cart Msg
 
-  Scenario: User can search for tea
-    Given Open target main page
-    When Search for tea
-    Then Verify search worked for tea
+  #Scenario: User can search for tea
+   # Given Open target main page
+    #When Search for tea
+    #Then Verify search worked for tea
 
 #  Scenario: User can search for a mug on Target
 #    Given Open target main page
@@ -36,3 +36,20 @@ Feature: Tests for Target Search and Cart Msg
     Given Open target cart
     When  Click on cart icon
     Then Verify empty cart
+    Then Verify Cart page opened
+
+   Scenario: User can access Sign in form
+    Given Open Target main page
+    When Click on Sign in
+    And Click Sign in on side menu
+    Then Verify Sign in form opens
+
+
+
+    Scenario: User can add a product to cart
+    Given Open Target main page
+    When Search for mug
+    And Click on Add to Cart
+    And Confirm Add to Cart button from side navigation
+    And Open cart page
+    Then Verify cart has 1 item(s)
