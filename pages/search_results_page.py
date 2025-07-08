@@ -13,9 +13,8 @@ class SearchResultsPage(Page):
     SEARCH_RESULTS_TXT= (By.XPATH, "//div[@data-test='lp-resultsCount']")
 
     def verify_search_results(self):
-        self.verify_partial_text('tea', self.SEARCH_RESULTS_TXT)
-
-
+        actual_text = self.find_element(*self.SEARCH_RESULTS_TXT).text
+        assert 'tea' in actual_text, f"Error, expected 'tea' not in actual {actual_text}"
 
     def __init__(self, driver):
         super().__init__(driver)
